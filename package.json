@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Durmaethor/dev-mountain-books/issues"
   },
-  "homepage": "https://github.com/Durmaethor/dev-mountain-books#readme"
+  "homepage": "https://github.com/Durmaethor/dev-mountain-books#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
 }

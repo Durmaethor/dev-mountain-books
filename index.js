@@ -13,20 +13,37 @@ var app = express();
 // 1.
 app.use(bodyParser.json());
 
+var books_controller = {
+
+	index: function(req, res, next){
+		res.send(books);
+	},
+
+	build: function(req, res, next) {
+		books.push(req.body.name);
+		res.send(books);
+	},
+
+	update: function(req, res, next){
+		var newPosition = req.body.position; // (req.body) this is from the object that JSON sent back to us
+		books[newPosition] = req.body.newName;
+		res.send(books);
+	},
+
+	destroy: function(req, res, next){ 
+		books.splice(req.params.id, 1); // this will delete 'Harry Potter'
+		res.send(books);
+	}
+};
+
 // 2.
-app.get('/books', function(req, res, next){
-	res.send(books);
-})
+app.get('/books', books_controller.index);
 
 // 3.
 // must be a http POST method
 // if path === '/books'
 // then run the callback function
-app.post('/books', function(req, res, next) {
-	// req.body = { name: 'three little pigs' }
-	books.push(req.body.name);
-	res.send(books);
-});
+app.post('/books', books_controller.build);
 
 // {
 // 	"position": 2,
@@ -34,18 +51,11 @@ app.post('/books', function(req, res, next) {
 // }
 
 // 4.
-app.put('/books', function(req, res, next){
-	var newPosition = req.body.position; // (req.body) this is from the object that JSON sent back to us
-	books[newPosition] = req.body.newName;
-	res.send(books);
-})
+app.put('/books', books_controller.update);
 
 // 5.
-app.delete('/books/:id', function(req, res, next){ // sets it up so that if the request is books/ANYTHING it will pass ('/books/1')
-	books.splice(req.params.id, 1); // this will delete 'Harry Potter'
-	res.send(books);
-})
-// req.params = { id: 1 }
+app.delete('/books/:id', books_controller.destroy); // sets it up so that if the request is books/ANYTHING it will pass ('/books/1')
+
 
 
 var port = 3000;

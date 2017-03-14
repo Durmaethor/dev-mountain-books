@@ -14,19 +14,45 @@ var app = express();
 app.use(bodyParser.json());
 
 // 2.
-app.get('/books', bookctrl.index);
+app.use(function(req, res, next){
+	console.log(req.body);
+	if(req.body.isQuery === false) {
+		next();
+	}
+	// lots of code that handles queries specifically
+	console.log('is a query!!');
+});
 
 // 3.
+// next function
+app.use(function(req, res, next){
+	console.log(req.params);
+});
+
+
+
+
+
+
+
+
+// 2.1
+app.get('/books', bookctrl.index);
+
+// 2.2
 // must be a http POST method
 // if path === '/books'
 // then run the callback function
 app.post('/books', booksCtrl.build);
 
-// 4.
+// 2.3
 app.put('/books', booksCtrl.update);
 
-// 5.
+// 2.4
 app.delete('/books/:id', booksCtrl.destroy); // sets it up so that if the request is books/ANYTHING it will pass ('/books/1')
+
+
+
 
 
 

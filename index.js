@@ -1,6 +1,8 @@
 var express    = require('express');
 var bodyParser = require('body-parser');
 
+var books = ['The Hobbit', 'Harry Potter', 'Lord of the Rings']
+
 var app = express();
 
 // always parse http body as json
@@ -9,6 +11,11 @@ var app = express();
 app.use(bodyParser.json());
 
 // 2.
+app.get('/books', function(req, res, next){
+	res.send(books);
+})
+
+// 3.
 // must be a http POST method
 // if path === '/books'
 // then run the callback function

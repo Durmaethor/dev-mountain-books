@@ -24,12 +24,18 @@ app.use(function(req, res, next){
 	next();
 });
 
-// 3.
 // next function
 app.use(function(req, res, next){
 	console.log(req.params);
 });
 
+var isAdmin = function(req, res, next){
+	if(req.query.admin === 'true') {
+		next();
+	} else {
+		res.status(403).send("da nanu, can't touch this!");
+	}
+};
 
 
 
@@ -37,19 +43,20 @@ app.use(function(req, res, next){
 
 
 
-// 2.1
+// 3. ///////
+// 3.1
 app.get('/books', bookctrl.index);
 
-// 2.2
+// 3.2
 // must be a http POST method
 // if path === '/books'
 // then run the callback function
 app.post('/books', booksCtrl.build);
 
-// 2.3
+// 3.3
 app.put('/books', booksCtrl.update);
 
-// 2.4
+// 3.4
 app.delete('/books/:id', booksCtrl.destroy); // sets it up so that if the request is books/ANYTHING it will pass ('/books/1')
 
 

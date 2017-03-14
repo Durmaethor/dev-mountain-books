@@ -1,7 +1,7 @@
 
 // Books Controller
 
-var books = ['The Hobbit', 'Harry Potter', 'Lord of the Rings']
+var books = require('../models/book')
 
    module.exports = {
 

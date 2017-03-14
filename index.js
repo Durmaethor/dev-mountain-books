@@ -40,6 +40,13 @@ app.put('/books', function(req, res, next){
 	res.send(books);
 })
 
+// 5.
+app.delete('/books/:id', function(req, res, next){ // sets it up so that if the request is books/ANYTHING it will pass ('/books/1')
+	books.splice(req.params.id, 1); // this will delete 'Harry Potter'
+	res.send(books);
+})
+// req.params = { id: 1 }
+
 
 var port = 3000;
 app.listen(port, function(){

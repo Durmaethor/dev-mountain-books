@@ -1,6 +1,9 @@
 
 // Books Controller
 
+
+var books = ['The Hobbit', 'Harry Potter', 'Lord of the Rings']
+
 var books_controller = {
 
 	index: function(req, res, next){

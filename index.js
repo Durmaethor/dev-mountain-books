@@ -28,7 +28,17 @@ app.post('/books', function(req, res, next) {
 	res.send(books);
 });
 
+// {
+// 	"position": 2,
+// 	"newName": "The Shining"
+// }
 
+// 4.
+app.put('/books', function(req, res, next){
+	var newPosition = req.body.position; // (req.body) this is from the object that JSON sent back to us
+	books[newPosition] = req.body.newName;
+	res.send(books);
+})
 
 
 var port = 3000;

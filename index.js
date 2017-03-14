@@ -20,9 +20,9 @@ app.get('/books', function(req, res, next){
 // if path === '/books'
 // then run the callback function
 app.post('/books', function(req, res, next) {
-		var incoming_body = req.body;
-		console.log(incoming_body);
-		res.json(incoming_body);
+	// req.body = { name: 'three little pigs' }
+	books.push(req.body.name);
+	res.send(books);
 });
 
 

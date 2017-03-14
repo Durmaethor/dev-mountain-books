@@ -4,7 +4,7 @@
 var express    = require('express');
 var bodyParser = require('body-parser');
 
-var booksCtrl = require('./controllers/books_controller.js') // Gives access to the controller file
+var booksCtrl = require('./controllers/books_controller'); // Gives access to the controller file by wrapping the whole thing in a self calling function
 
 var app = express();
 
@@ -14,13 +14,13 @@ var app = express();
 app.use(bodyParser.json());
 
 // 2.
-app.get('/books', books_controller.index);
+app.get('/books', bookctrl.index);
 
 // 3.
 // must be a http POST method
 // if path === '/books'
 // then run the callback function
-app.post('/books', books_controller.build);
+app.post('/books', booksCtrl.build);
 
 // {
 // 	"position": 2,
@@ -28,10 +28,10 @@ app.post('/books', books_controller.build);
 // }
 
 // 4.
-app.put('/books', books_controller.update);
+app.put('/books', booksCtrl.update);
 
 // 5.
-app.delete('/books/:id', books_controller.destroy); // sets it up so that if the request is books/ANYTHING it will pass ('/books/1')
+app.delete('/books/:id', booksCtrl.destroy); // sets it up so that if the request is books/ANYTHING it will pass ('/books/1')
 
 
 

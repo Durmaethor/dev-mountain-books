@@ -21,6 +21,7 @@ app.use(function(req, res, next){
 	}
 	// lots of code that handles queries specifically
 	console.log('is a query!!');
+	next();
 });
 
 // 3.

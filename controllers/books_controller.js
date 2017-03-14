@@ -6,7 +6,18 @@ var books = require('../models/book')
    module.exports = {
 
         index: function(req, res, next){
-            res.send(books);
+            if(req.query.rating) {
+                var rating = parseInt(req.query.rating);
+                var ratedBooks = [];
+                books.forEach(function(element, index, array){
+                    if (book.rating === rating) {
+                        ratedBooks.push(book);
+                    }
+                });
+                res.send(ratedBooks);
+            } else {
+                res.send(books);
+            }
         },
 
         build: function(req, res, next) {

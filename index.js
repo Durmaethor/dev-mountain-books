@@ -22,11 +22,6 @@ app.get('/books', bookctrl.index);
 // then run the callback function
 app.post('/books', booksCtrl.build);
 
-// {
-// 	"position": 2,
-// 	"newName": "The Shining"
-// }
-
 // 4.
 app.put('/books', booksCtrl.update);
 

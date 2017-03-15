@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 // 2.
 app.use(function(req, res, next){
 	console.log(req.body);
-	if(req.body.isQuery === false) {
+	if(req.body.isQuery === false) { 
 		next();
 	}
 	// lots of code that handles queries specifically
